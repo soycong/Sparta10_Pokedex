@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		B3D908742D226857007811A6 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = B3D908732D226857007811A6 /* RxBlocking */; };
+		B3D908762D226857007811A6 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = B3D908752D226857007811A6 /* RxCocoa */; };
+		B3D908782D226857007811A6 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = B3D908772D226857007811A6 /* RxRelay */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		B3D908282D2259FA007811A6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -65,6 +71,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3D908782D226857007811A6 /* RxRelay in Frameworks */,
+				B3D908762D226857007811A6 /* RxCocoa in Frameworks */,
+				B3D908742D226857007811A6 /* RxBlocking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +134,9 @@
 			);
 			name = Sparta10_Pokedex;
 			packageProductDependencies = (
+				B3D908732D226857007811A6 /* RxBlocking */,
+				B3D908752D226857007811A6 /* RxCocoa */,
+				B3D908772D226857007811A6 /* RxRelay */,
 			);
 			productName = Sparta10_Pokedex;
 			productReference = B3D908112D2259F8007811A6 /* Sparta10_Pokedex.app */;
@@ -208,6 +220,9 @@
 			);
 			mainGroup = B3D908082D2259F8007811A6;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				B3D908722D226857007811A6 /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = B3D908122D2259F8007811A6 /* Products */;
 			projectDirPath = "";
@@ -561,6 +576,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B3D908722D226857007811A6 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.8.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B3D908732D226857007811A6 /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B3D908722D226857007811A6 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
+		B3D908752D226857007811A6 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B3D908722D226857007811A6 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		B3D908772D226857007811A6 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B3D908722D226857007811A6 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B3D908092D2259F8007811A6 /* Project object */;
 }
