@@ -10,6 +10,7 @@
 		B3D908742D226857007811A6 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = B3D908732D226857007811A6 /* RxBlocking */; };
 		B3D908762D226857007811A6 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = B3D908752D226857007811A6 /* RxCocoa */; };
 		B3D908782D226857007811A6 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = B3D908772D226857007811A6 /* RxRelay */; };
+		B3D908812D23AB36007811A6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B3D908802D23AB36007811A6 /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3D908782D226857007811A6 /* RxRelay in Frameworks */,
+				B3D908812D23AB36007811A6 /* SnapKit in Frameworks */,
 				B3D908762D226857007811A6 /* RxCocoa in Frameworks */,
 				B3D908742D226857007811A6 /* RxBlocking in Frameworks */,
 			);
@@ -137,6 +139,7 @@
 				B3D908732D226857007811A6 /* RxBlocking */,
 				B3D908752D226857007811A6 /* RxCocoa */,
 				B3D908772D226857007811A6 /* RxRelay */,
+				B3D908802D23AB36007811A6 /* SnapKit */,
 			);
 			productName = Sparta10_Pokedex;
 			productReference = B3D908112D2259F8007811A6 /* Sparta10_Pokedex.app */;
@@ -222,6 +225,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				B3D908722D226857007811A6 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				B3D9087F2D23AB36007811A6 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = B3D908122D2259F8007811A6 /* Products */;
@@ -586,6 +590,14 @@
 				minimumVersion = 6.8.0;
 			};
 		};
+		B3D9087F2D23AB36007811A6 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -603,6 +615,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B3D908722D226857007811A6 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxRelay;
+		};
+		B3D908802D23AB36007811A6 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B3D9087F2D23AB36007811A6 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
