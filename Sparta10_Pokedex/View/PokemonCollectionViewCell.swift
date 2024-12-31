@@ -12,10 +12,9 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     
     let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.image = UIImage(named: "PokemonBall")
+        imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
-        imageView.backgroundColor = .darkGray
-        imageView.layer.cornerRadius = 10
         return imageView
     }()
     
@@ -23,6 +22,8 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         contentView.addSubview(imageView)
         imageView.frame = contentView.bounds
+        self.backgroundColor = UIColor(named: "CellBackgroundColor")
+        self.layer.cornerRadius = 10
     }
     
     required init?(coder: NSCoder) {
@@ -35,19 +36,21 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         imageView.image = nil
     }
     
-    func configure(with pokemonDetail:PokemonDetail) {
-//        guard let posterPath = movie.posterPath else { return }
-//        let urlString = "https://image.tmdb.org/t/p/w500/\(posterPath)"
-//        guard let url = URL(string: urlString) else { return }
-//        
-//        DispatchQueue.global().async { [weak self] in
-//            if let data = try? Data(contentsOf: url) {
-//                if let image = UIImage(data: data) {
-//                    DispatchQueue.main.async {
-//                        self?.imageView.image = image
-//                    }
-//                }
-//            }
-//        }
+    func configure(with pokemon: PokemonList) {
+        // URL에서 포켓몬 ID 추출
+        if let url = pokemon.url,
+           let id = Int(url.split(separator: "/").last ?? "0") {
+            let imageUrlString = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/\(id).png"
+            if let imageUrl = URL(string: imageUrlString) {
+                DispatchQueue.global().async {
+                    if let data = try? Data(contentsOf: imageUrl),
+                       let image = UIImage(data: data) {
+                        DispatchQueue.main.async {
+                            self.imageView.image = image
+                        }
+                    }
+                }
+            }
+        }
     }
 }
