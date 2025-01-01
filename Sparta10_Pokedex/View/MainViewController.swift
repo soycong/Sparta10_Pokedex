@@ -30,13 +30,13 @@ class MainViewController: UIViewController {
 //        collectionView.register(SectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeaderView.id)
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.backgroundColor = UIColor(named: "MainColor")
+        collectionView.backgroundColor = .main
         return collectionView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(named: "MainColor")
+        view.backgroundColor = .main
         bindViewModel()
         configureUI()
     }
@@ -128,6 +128,8 @@ extension MainViewController: UICollectionViewDataSource {
 }
 
 extension MainViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.navigationController?.pushViewController(DetailViewController(), animated: true)
+    }
 }
 

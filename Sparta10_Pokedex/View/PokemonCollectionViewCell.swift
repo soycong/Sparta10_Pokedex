@@ -22,7 +22,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         contentView.addSubview(imageView)
         imageView.frame = contentView.bounds
-        self.backgroundColor = UIColor(named: "CellBackgroundColor")
+        self.backgroundColor = .cellBackground
         self.layer.cornerRadius = 10
     }
     
