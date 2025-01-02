@@ -102,7 +102,18 @@ class DetailViewController: UIViewController {
                     }
                 }
                 
-                self.nameLabel.text = "이름: \(pokemonDetail.name)"
+                let koreanName = PokemonTranslator.getKoreanName(for: pokemonDetail.name)
+                //print("\(pokemonName)의 한국어 이름: \(koreanName)")
+                
+                let types = pokemonDetail.types.map { type in
+                    if let pokemonType = PokemonTypeName(rawValue: type.type.name) {
+                        return pokemonType.displayName
+                    }
+                    return type.type.name
+                }
+                
+                self.nameLabel.text = "이름: \(koreanName)"
+                self.typeLabel.text = "타입: \(types.joined(separator: ", "))"
                 self.heightLabel.text = "키: \(pokemonDetail.height)0cm"
                 self.weightLabel.text = "무게: \(pokemonDetail.weight)kg"
                 
