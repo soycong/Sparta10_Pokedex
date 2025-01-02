@@ -15,7 +15,7 @@ class MainViewModel {
     
     ///View가 구독할 subject
     let pokemonSubject = BehaviorSubject(value: [PokemonList]())
-    let pokemonDetailSubject = PublishSubject<PokemonDetail>()
+    //let pokemonDetailSubject = PublishSubject<PokemonDetail>()
     
     let limit = 20
     let offset = 0
@@ -27,7 +27,7 @@ class MainViewModel {
 //            fetchPokemonDetail(pokemonList: firstPokemon)
 //        }
         
-        fetchPokemonDetail()
+        //fetchPokemonDetail()
     }
     
     func fetchPokemonList(limit: Int, offset: Int) {
@@ -37,7 +37,7 @@ class MainViewModel {
         }
         
         NetworkManager.shared.fetch(url: url)
-            .debug()
+            //.debug()
             .subscribe(onSuccess: { [weak self] (pokemonListResponse: PokemonListResponse) in
                 self?.pokemonSubject.onNext(pokemonListResponse.results)
             }, onFailure: { [weak self] error in
@@ -69,20 +69,4 @@ class MainViewModel {
 //            )
 //            .disposed(by: disposeBag)
 //    }
-    
-    func fetchPokemonDetail() {
-        let url = "https://pokeapi.co/api/v2/pokemon/1/"
-        
-        NetworkManager.shared.fetch(url: URL(string: url)!)
-            .debug("Pokemon Detail")
-            .subscribe(
-                onSuccess: { [weak self] (pokemonDetail: PokemonDetail) in
-                    self?.pokemonDetailSubject.onNext(pokemonDetail)
-                },
-                onFailure: { [weak self] error in
-                    self?.pokemonDetailSubject.onError(error)
-                }
-            )
-            .disposed(by: disposeBag)
-    }
 }
