@@ -7,8 +7,13 @@
 
 import UIKit
 import SnapKit
+import RxSwift
 
 class DetailViewController: UIViewController {
+    
+    private let detailViewModel = DetailViewModel()
+    
+    private let disposeBag = DisposeBag()
     
     private lazy var stackView = {
         let stackView = UIStackView(arrangedSubviews: [imageView, nameLabel, typeLabel, heightLabel, weightLabel])
@@ -73,7 +78,38 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .main
+        bindViewModel()
         configureUI()
+    }
+    
+    private func bindViewModel() {
+        detailViewModel.pokemonDetailSubject
+            .observe(on: MainScheduler.instance)  // UI 업데이트는 메인 스레드에서
+            .debug()
+            .subscribe(onNext: { [weak self] pokemonDetail in
+                guard let self = self else { return }
+                
+                if let imageUrlString = pokemonDetail.sprites.front_default,
+                   let imageUrl = URL(string: imageUrlString) {
+
+                    DispatchQueue.global().async {
+                        if let data = try? Data(contentsOf: imageUrl),
+                           let image = UIImage(data: data) {
+                            DispatchQueue.main.async {
+                                self.imageView.image = image
+                            }
+                        }
+                    }
+                }
+                
+                self.nameLabel.text = "이름: \(pokemonDetail.name)"
+                self.heightLabel.text = "키: \(pokemonDetail.height)0cm"
+                self.weightLabel.text = "무게: \(pokemonDetail.weight)kg"
+                
+            }, onError: { error in
+                print("상세정보 에러:", error)
+            })
+            .disposed(by: disposeBag)
     }
     
     func configureUI() {
@@ -98,5 +134,9 @@ class DetailViewController: UIViewController {
             //$0.horizontalEdges.equalTo(view.safeAreaLayoutGuide.snp.horizontalEdges)
             //$0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
+    }
+    
+    func configure(with pokemon: PokemonList) {
+        detailViewModel.fetchPokemonDetail(pokemonList: pokemon)
     }
 }
