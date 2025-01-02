@@ -11,7 +11,9 @@ import RxSwift
 
 class MainViewController: UIViewController {
 
-    private let viewModel = MainViewModel()
+    private let mainViewModel = MainViewModel()
+    private let detailViewModel = DetailViewModel()
+    
     private let disposeBag = DisposeBag()
     
     private var pokemonList = [PokemonList]()
@@ -43,10 +45,10 @@ class MainViewController: UIViewController {
     
     private func bindViewModel() {
         // 포켓몬 리스트 데이터 구독
-        viewModel.pokemonSubject
+        mainViewModel.pokemonSubject
             .observe(on: MainScheduler.instance) //MainThread 에서 동작해라!
             .subscribe(onNext: { pokemonList in
-                print("받은 포켓몬 리스트:", pokemonList)
+                //print("받은 포켓몬 리스트:", pokemonList)
 
                 self.pokemonList = pokemonList
                 self.collectionView.reloadData()
@@ -56,14 +58,14 @@ class MainViewController: UIViewController {
             .disposed(by: disposeBag)
             
         // 포켓몬 상세 정보 구독
-        viewModel.pokemonDetailSubject
-            .subscribe(onNext: { pokemonDetail in
-                print("포켓몬 상세정보:", pokemonDetail)
-                // 상세 화면 업데이트
-            }, onError: { error in
-                print("상세정보 에러:", error)
-            })
-            .disposed(by: disposeBag)
+//        viewModel.pokemonDetailSubject
+//            .subscribe(onNext: { pokemonDetail in
+//                print("포켓몬 상세정보:", pokemonDetail)
+//                // 상세 화면 업데이트
+//            }, onError: { error in
+//                print("상세정보 에러:", error)
+//            })
+//            .disposed(by: disposeBag)
     }
     
     private func createLayout() -> UICollectionViewLayout {
@@ -129,7 +131,11 @@ extension MainViewController: UICollectionViewDataSource {
 
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.navigationController?.pushViewController(DetailViewController(), animated: true)
+        let pokemon = pokemonList[indexPath.item]
+        let detailVC = DetailViewController()
+        detailVC.configure(with: pokemon)
+        
+        self.navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 
