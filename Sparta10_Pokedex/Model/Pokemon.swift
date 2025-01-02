@@ -26,8 +26,17 @@ struct PokemonDetail: Codable {
     let height: Int
     let weight: Int
     let sprites: Sprites
+    let types: [TypeElement]  // 타입 정보 추가
 }
 
 struct Sprites: Codable {
     let front_default: String?
+}
+
+struct TypeElement: Codable {
+    let type: Type
+}
+
+struct Type: Codable {
+    let name: String
 }
