@@ -139,3 +139,15 @@ extension MainViewController: UICollectionViewDelegate {
     }
 }
 
+extension MainViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let screenHeight = scrollView.bounds.height
+        
+        // 스크롤이 하단에서 100포인트 남았을 때 다음 데이터 로드
+        if offsetY > contentHeight - screenHeight - 100 {
+            mainViewModel.fetchPokemonList()
+        }
+    }
+}

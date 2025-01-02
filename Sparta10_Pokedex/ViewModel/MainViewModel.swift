@@ -18,31 +18,39 @@ class MainViewModel {
     //let pokemonDetailSubject = PublishSubject<PokemonDetail>()
     
     let limit = 20
-    let offset = 0
+    private var offset = 0
+    private var isFetching = false
     
     init() {
-        fetchPokemonList(limit: limit, offset: offset)
-        
-//        if let firstPokemon = try? pokemonSubject.value().first {
-//            fetchPokemonDetail(pokemonList: firstPokemon)
-//        }
-        
-        //fetchPokemonDetail()
+        fetchPokemonList()
     }
     
-    func fetchPokemonList(limit: Int, offset: Int) {
+    func fetchPokemonList() {
+        // 이미 데이터를 가져오는 중이면 중복 요청 방지
+        guard !isFetching else { return }
+        isFetching = true
+        
         guard let url = URL(string: "https://pokeapi.co/api/v2/pokemon?limit=\(limit)&offset=\(offset)") else {
             pokemonSubject.onError(NetworkError.invalidUrl)
             return
         }
         
         NetworkManager.shared.fetch(url: url)
-            //.debug()
             .subscribe(onSuccess: { [weak self] (pokemonListResponse: PokemonListResponse) in
-                self?.pokemonSubject.onNext(pokemonListResponse.results)
-            }, onFailure: { [weak self] error in
-                self?.pokemonSubject.onError(error)
-            }).disposed(by: disposeBag)
+                guard let self = self else { return }
+                
+                if let currentList = try? self.pokemonSubject.value() {
+                    // 기존 리스트에 새로운 데이터 추가
+                    let newList = currentList + pokemonListResponse.results
+                    self.pokemonSubject.onNext(newList)
+                    
+                    // 다음 페이지를 위해 offset 증가
+                    self.offset += self.limit
+                }
+                self.isFetching = false            }, onFailure: { [weak self] error in
+                    self?.pokemonSubject.onError(error)
+                    self?.isFetching = false
+                }).disposed(by: disposeBag)
     }
     
 //    func fetchPokemonDetail(pokemonList: PokemonList) {
