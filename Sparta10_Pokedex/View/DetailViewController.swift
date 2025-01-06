@@ -37,7 +37,7 @@ class DetailViewController: UIViewController {
     
     private var nameLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 24, weight: .bold)
+        label.font = .systemFont(ofSize: 32, weight: .bold)
         label.textColor = .cellBackground
         label.numberOfLines = 0
         return label
@@ -45,7 +45,7 @@ class DetailViewController: UIViewController {
     
     private var typeLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 24, weight: .bold)
+        label.font = .systemFont(ofSize: 22, weight: .bold)
         label.textColor = .cellBackground
         label.numberOfLines = 0
         return label
@@ -53,7 +53,7 @@ class DetailViewController: UIViewController {
     
     private var heightLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 24, weight: .bold)
+        label.font = .systemFont(ofSize: 22, weight: .bold)
         label.textColor = .cellBackground
         label.numberOfLines = 0
         return label
@@ -62,7 +62,7 @@ class DetailViewController: UIViewController {
     private var weightLabel: UILabel = {
         let label = UILabel()
         //label.text = "무게: weightLabel"
-        label.font = .systemFont(ofSize: 24, weight: .bold)
+        label.font = .systemFont(ofSize: 22, weight: .bold)
         label.textColor = .cellBackground
         label.numberOfLines = 0
         return label
