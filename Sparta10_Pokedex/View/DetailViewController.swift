@@ -83,19 +83,6 @@ final class DetailViewController: UIViewController {
             .subscribe(onNext: { [weak self] pokemonDetail in
                 guard let self = self else { return }
                 
-                if let imageUrlString = pokemonDetail.sprites.front_default,
-                   let imageUrl = URL(string: imageUrlString) {
-
-                    DispatchQueue.global().async {
-                        if let data = try? Data(contentsOf: imageUrl),
-                           let image = UIImage(data: data) {
-                            DispatchQueue.main.async {
-                                self.imageView.image = image
-                            }
-                        }
-                    }
-                }
-                
                 let koreanName = PokemonTranslator.getKoreanName(for: pokemonDetail.name)
                 
                 let types = pokemonDetail.types.map { type in
@@ -111,6 +98,12 @@ final class DetailViewController: UIViewController {
                 self.weightLabel.text = "몸무게: \(String(format: "%.1f", Double(pokemonDetail.weight) / 10))kg"
             }, onError: { error in
                 print("상세정보 에러:", error)
+            })
+            .disposed(by: disposeBag)
+        
+        detailViewModel.pokemonImageSubject
+            .subscribe(onNext: { [weak self] image in
+                self?.imageView.image = image
             })
             .disposed(by: disposeBag)
     }
