@@ -12,11 +12,7 @@ class DetailViewModel {
     
     private let disposeBag = DisposeBag()
     let pokemonDetailSubject = PublishSubject<PokemonDetail>()
-    
-    init() {
-        //fetchPokemonDetail(PokemonList)
-    }
-    
+
     func fetchPokemonDetail(pokemonList: PokemonList) {
         guard let pokemonUrl = pokemonList.url,
               let url = URL(string: pokemonUrl) else {

@@ -13,18 +13,12 @@ import RxSwift
 class MainViewModel {
     private let disposeBag = DisposeBag()
     
-    ///View가 구독할 subject
     let pokemonSubject = BehaviorSubject(value: [PokemonList]())
-    //let pokemonDetailSubject = PublishSubject<PokemonDetail>()
     
     let limit = 20
     private var offset = 0
     private var isFetching = false
-    
-    init() {
-        fetchPokemonList()
-    }
-    
+
     func fetchPokemonList() {
         // 이미 데이터를 가져오는 중이면 중복 요청 방지
         guard !isFetching else { return }
@@ -52,29 +46,4 @@ class MainViewModel {
                     self?.isFetching = false
                 }).disposed(by: disposeBag)
     }
-    
-//    func fetchPokemonDetail(pokemonList: PokemonList) {
-//        guard let pokemonUrl = pokemonList.url else {
-//            pokemonDetailSubject.onError(NetworkError.dataFetchFail)
-//            return
-//        }
-//        
-//        guard let url = URL(string: pokemonUrl) else {
-//            pokemonDetailSubject.onError(NetworkError.invalidUrl)
-//            return
-//        }
-//        
-//
-//        NetworkManager.shared.fetch(url: url)
-//            .debug("Pokemon Detail")
-//            .subscribe(
-//                onSuccess: { [weak self] (pokemonDetail: PokemonDetail) in
-//                    self?.pokemonDetailSubject.onNext(pokemonDetail)
-//                },
-//                onFailure: { [weak self] error in
-//                    self?.pokemonDetailSubject.onError(error)
-//                }
-//            )
-//            .disposed(by: disposeBag)
-//    }
 }

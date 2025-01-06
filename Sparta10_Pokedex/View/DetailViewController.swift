@@ -24,9 +24,6 @@ class DetailViewController: UIViewController {
         
         stackView.backgroundColor = .detailBackground
         stackView.layer.cornerRadius = 20
-        
-//        stackView.layoutMargins = UIEdgeInsets(top: 20, left: 10, bottom: 20, right: 10)
-//        stackView.isLayoutMarginsRelativeArrangement = true
 
         return stackView
     }()
@@ -103,7 +100,6 @@ class DetailViewController: UIViewController {
                 }
                 
                 let koreanName = PokemonTranslator.getKoreanName(for: pokemonDetail.name)
-                //print("\(pokemonName)의 한국어 이름: \(koreanName)")
                 
                 let types = pokemonDetail.types.map { type in
                     if let pokemonType = PokemonTypeName(rawValue: type.type.name) {
@@ -137,13 +133,8 @@ class DetailViewController: UIViewController {
         
         stackView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
-            //$0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(20)
             $0.centerX.equalToSuperview()
             $0.horizontalEdges.equalToSuperview().inset(20)
-            //$0.bottom.equalToSuperview().inset(20)
-            //$0.verticalEdges.equalToSuperview().inset(20)
-            //$0.horizontalEdges.equalTo(view.safeAreaLayoutGuide.snp.horizontalEdges)
-            //$0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
     }
     

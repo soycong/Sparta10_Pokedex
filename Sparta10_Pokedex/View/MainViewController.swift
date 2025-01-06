@@ -29,7 +29,6 @@ class MainViewController: UIViewController {
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.register(PokemonCollectionViewCell.self, forCellWithReuseIdentifier: PokemonCollectionViewCell.id)
-//        collectionView.register(SectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeaderView.id)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundColor = .main
@@ -48,24 +47,12 @@ class MainViewController: UIViewController {
         mainViewModel.pokemonSubject
             .observe(on: MainScheduler.instance) //MainThread 에서 동작해라!
             .subscribe(onNext: { pokemonList in
-                //print("받은 포켓몬 리스트:", pokemonList)
-
                 self.pokemonList = pokemonList
                 self.collectionView.reloadData()
             }, onError: { error in
                 print("에러 발생:", error)
             })
             .disposed(by: disposeBag)
-            
-        // 포켓몬 상세 정보 구독
-//        viewModel.pokemonDetailSubject
-//            .subscribe(onNext: { pokemonDetail in
-//                print("포켓몬 상세정보:", pokemonDetail)
-//                // 상세 화면 업데이트
-//            }, onError: { error in
-//                print("상세정보 에러:", error)
-//            })
-//            .disposed(by: disposeBag)
     }
     
     private func createLayout() -> UICollectionViewLayout {
@@ -97,8 +84,6 @@ class MainViewController: UIViewController {
     }
     
     private func configureUI() {
-        //view.backgroundColor = .black
-        
         [ imageView, collectionView ].forEach { view.addSubview($0) }
         
         imageView.snp.makeConstraints {
