@@ -106,7 +106,7 @@ class DetailViewController: UIViewController {
                 self.nameLabel.text = "No.\(pokemonDetail.id) \(koreanName)"
                 self.typeLabel.text = "타입: \(types.joined(separator: ", "))"
                 self.heightLabel.text = "키: \(pokemonDetail.height)0cm"
-                self.weightLabel.text = "무게: \(String(format: "%.1f", Double(pokemonDetail.weight) / 10))kg"
+                self.weightLabel.text = "몸무게: \(String(format: "%.1f", Double(pokemonDetail.weight) / 10))kg"
             }, onError: { error in
                 print("상세정보 에러:", error)
             })
