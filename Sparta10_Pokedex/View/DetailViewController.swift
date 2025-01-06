@@ -40,7 +40,7 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.text = "이름: nameLabel"
         label.font = .systemFont(ofSize: 24, weight: .bold)
-        label.textColor = .black
+        label.textColor = .cellBackground
         label.numberOfLines = 0
         return label
     }()
@@ -49,7 +49,7 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.text = "타입: typeLabel"
         label.font = .systemFont(ofSize: 24, weight: .bold)
-        label.textColor = .black
+        label.textColor = .cellBackground
         label.numberOfLines = 0
         return label
     }()
@@ -58,7 +58,7 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.text = "키: heightLabel"
         label.font = .systemFont(ofSize: 24, weight: .bold)
-        label.textColor = .black
+        label.textColor = .cellBackground
         label.numberOfLines = 0
         return label
     }()
@@ -67,7 +67,7 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.text = "무게: weightLabel"
         label.font = .systemFont(ofSize: 24, weight: .bold)
-        label.textColor = .black
+        label.textColor = .cellBackground
         label.numberOfLines = 0
         return label
     }()
