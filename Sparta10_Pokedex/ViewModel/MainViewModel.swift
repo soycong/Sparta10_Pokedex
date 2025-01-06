@@ -8,9 +8,7 @@
 import Foundation
 import RxSwift
 
-//비즈니스 로직 작성
-
-class MainViewModel {
+final class MainViewModel {
     private let disposeBag = DisposeBag()
     
     let pokemonSubject = BehaviorSubject(value: [PokemonList]())

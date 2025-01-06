@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PokemonCollectionViewCell: UICollectionViewCell {
+final class PokemonCollectionViewCell: UICollectionViewCell {
     static let id: String = "PokemonCollectionViewCell"
     
     let imageView: UIImageView = {

@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import RxSwift
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
 
     private let mainViewModel = MainViewModel()
     private let detailViewModel = DetailViewModel()

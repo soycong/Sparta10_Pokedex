@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-class DetailViewModel {
+final class DetailViewModel {
     
     private let disposeBag = DisposeBag()
     let pokemonDetailSubject = PublishSubject<PokemonDetail>()
