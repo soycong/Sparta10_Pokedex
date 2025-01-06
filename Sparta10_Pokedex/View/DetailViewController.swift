@@ -73,6 +73,8 @@ final class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .main
+        navigationController?.navigationBar.tintColor = .cellBackground
+
         bind()
         configureUI()
     }
