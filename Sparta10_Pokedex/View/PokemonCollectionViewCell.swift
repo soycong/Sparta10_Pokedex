@@ -12,7 +12,6 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     
     let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "PokemonBall")
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         return imageView

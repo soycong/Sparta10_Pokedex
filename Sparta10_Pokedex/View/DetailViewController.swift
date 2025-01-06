@@ -30,7 +30,6 @@ class DetailViewController: UIViewController {
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "PokemonBall")
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         return imageView
@@ -38,7 +37,6 @@ class DetailViewController: UIViewController {
     
     private var nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "이름: nameLabel"
         label.font = .systemFont(ofSize: 24, weight: .bold)
         label.textColor = .cellBackground
         label.numberOfLines = 0
@@ -47,7 +45,6 @@ class DetailViewController: UIViewController {
     
     private var typeLabel: UILabel = {
         let label = UILabel()
-        label.text = "타입: typeLabel"
         label.font = .systemFont(ofSize: 24, weight: .bold)
         label.textColor = .cellBackground
         label.numberOfLines = 0
@@ -56,7 +53,6 @@ class DetailViewController: UIViewController {
     
     private var heightLabel: UILabel = {
         let label = UILabel()
-        label.text = "키: heightLabel"
         label.font = .systemFont(ofSize: 24, weight: .bold)
         label.textColor = .cellBackground
         label.numberOfLines = 0
@@ -65,7 +61,7 @@ class DetailViewController: UIViewController {
     
     private var weightLabel: UILabel = {
         let label = UILabel()
-        label.text = "무게: weightLabel"
+        //label.text = "무게: weightLabel"
         label.font = .systemFont(ofSize: 24, weight: .bold)
         label.textColor = .cellBackground
         label.numberOfLines = 0
