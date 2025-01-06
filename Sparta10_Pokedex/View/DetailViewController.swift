@@ -15,16 +15,19 @@ class DetailViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     
+    private var informationView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .detailBackground
+        view.layer.cornerRadius = 20
+        return view
+    }()
+    
     private lazy var stackView = {
         let stackView = UIStackView(arrangedSubviews: [imageView, nameLabel, typeLabel, heightLabel, weightLabel])
         stackView.axis = .vertical
         stackView.spacing = 20
         stackView.alignment = .center
         stackView.distribution = .fill
-        
-        stackView.backgroundColor = .detailBackground
-        stackView.layer.cornerRadius = 20
-
         return stackView
     }()
     
@@ -61,7 +64,6 @@ class DetailViewController: UIViewController {
     
     private var weightLabel: UILabel = {
         let label = UILabel()
-        //label.text = "무게: weightLabel"
         label.font = .systemFont(ofSize: 22, weight: .bold)
         label.textColor = .cellBackground
         label.numberOfLines = 0
@@ -114,21 +116,27 @@ class DetailViewController: UIViewController {
     }
     
     func configureUI() {
+        view.addSubview(informationView)
         view.addSubview(stackView)
         
+        informationView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-20)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+        }
+        
         imageView.snp.makeConstraints {
-            $0.top.equalTo(stackView.snp.top).inset(20)
             $0.width.height.equalTo(200)
         }
         
         weightLabel.snp.makeConstraints {
-            $0.bottom.equalTo(stackView.snp.bottom).offset(-20)
+            $0.bottom.equalTo(stackView.snp.bottom).offset(-40)
         }
-        
+
         stackView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
-            $0.centerX.equalToSuperview()
-            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.top.equalTo(informationView.snp.top).offset(20)
+            $0.leading.trailing.equalTo(informationView).inset(20)
+            $0.bottom.lessThanOrEqualTo(informationView.snp.bottom).offset(-20)
         }
     }
     
