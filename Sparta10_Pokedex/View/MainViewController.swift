@@ -38,11 +38,11 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .main
-        bindViewModel()
+        bind()
         configureUI()
     }
     
-    private func bindViewModel() {
+    private func bind() {
         // 포켓몬 리스트 데이터 구독
         mainViewModel.pokemonSubject
             .observe(on: MainScheduler.instance) //MainThread 에서 동작해라!

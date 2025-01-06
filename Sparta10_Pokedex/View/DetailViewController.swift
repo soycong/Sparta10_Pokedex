@@ -73,11 +73,11 @@ final class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .main
-        bindViewModel()
+        bind()
         configureUI()
     }
     
-    private func bindViewModel() {
+    private func bind() {
         detailViewModel.pokemonDetailSubject
             .observe(on: MainScheduler.instance)  // UI 업데이트는 메인 스레드에서
             .subscribe(onNext: { [weak self] pokemonDetail in
