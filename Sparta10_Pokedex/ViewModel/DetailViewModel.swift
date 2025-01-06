@@ -21,7 +21,6 @@ class DetailViewModel {
         }
         
         NetworkManager.shared.fetch(url: url)
-            .debug("Pokemon Detail")
             .subscribe(
                 onSuccess: { [weak self] (pokemonDetail: PokemonDetail) in
                     self?.pokemonDetailSubject.onNext(pokemonDetail)

@@ -82,7 +82,6 @@ class DetailViewController: UIViewController {
     private func bindViewModel() {
         detailViewModel.pokemonDetailSubject
             .observe(on: MainScheduler.instance)  // UI 업데이트는 메인 스레드에서
-            .debug()
             .subscribe(onNext: { [weak self] pokemonDetail in
                 guard let self = self else { return }
                 
